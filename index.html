@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医療支援ロボットシステム研究室 | 神奈川工科大学 臨床工学科</title>
+    <style>
+        :root {
+            --primary-color: #005A9C;
+            --secondary-color: #4A90E2;
+            --accent-color: #E6F0FA;
+            --text-color: #333333;
+            --bg-light: #F8F9FA;
+            --border-color: #E0E0E0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            color: var(--text-color);
+            line-height: 1.7;
+            background-color: #FFFFFF;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: #FFFFFF;
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        /* Main Hero Section */
+        .hero {
+            background-color: var(--accent-color);
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #555555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Main Content Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            margin-bottom: 60px;
+            scroll-margin-top: 80px;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 24px;
+            background-color: var(--primary-color);
+        }
+
+        /* Cards and Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #666666;
+            margin-bottom: 15px;
+        }
+
+        .btn-link {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #FFFFFF;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .btn-link:hover {
+            background-color: var(--secondary-color);
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+
+        /* Projects Table / List */
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .project-item {
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px 20px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .project-item h4 {
+            font-size: 1.1rem;
+            color: #222222;
+            margin-bottom: 5px;
+        }
+
+        .project-meta {
+            font-size: 0.85rem;
+            color: #666666;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #E2E8F0;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Faculty Section */
+        .faculty-box {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .faculty-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .faculty-info .title {
+            font-size: 0.95rem;
+            color: #666666;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222222;
+            color: #CCCCCC;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: #FFFFFF;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .faculty-box {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="header-container">
+            <div class="logo">医療支援ロボットシステム研究室</div>
+            <nav>
+                <ul>
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#research">RESEARCH</a></li>
+                    <li><a href="#events">EVENTS</a></li>
+                    <li><a href="#faculty">FACULTY</a></li>
+                    <li><a href="#projects">PROJECTS</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>神奈川工科大学 医療支援ロボットシステム研究室</h1>
+        <p>生体計測と工学技術を融合し、安全で確実な医療を支える医療支援ロボット・トレーニングデバイスの開発を目指しています。</p>
+    </div>
+
+    <div class="container">
+
+        <!-- ABOUT Section -->
+        <section id="about">
+            <h2 class="section-title">研究室について</h2>
+            <p>本研究室（健康医療科学部 臨床工学科）では、「外科医やロボットが不適切な動作をする際に適切な負荷をかける」低侵襲医療支援システムの開発をはじめ、生体計測を基盤とした高度な医療デバイスの研究に取り組んでいます。</p>
+            <p style="margin-top: 10px;">「学部生のときから自分の手で設計・製作・評価を行い、医工連携の軸となるエンジニアを育てる」ことをポリシーとし、様々な医療機関や他大学との共同研究を積極的に推進しています。</p>
+        </section>
+
+        <!-- RESEARCH Section -->
+        <section id="research">
+            <h2 class="section-title">研究内容</h2>
+            <p style="margin-bottom: 20px;">見えない医療操作を科学的に解析し、触覚・力覚（ハプティック）技術を用いて再現する4つの先端技術開発を進めています。</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>1. 穿刺ハプティック・トレーニングシステム</h3>
+                    <p>皮膚や血管の抵抗感・手ごたえを再現し、超音波ガイド下での穿刺技術を安全に学べる高精度シミュレータ。</p>
+                </div>
+                <div class="card">
+                    <h3>2. 過力抑制機能付き手術用鉗子デバイス</h3>
+                    <p>内視鏡手術等において組織へ必要以上の力が加わるのを機械的に抑制し、安全性を高める小規模支援デバイス。</p>
+                </div>
+                <div class="card">
+                    <h3>3. 膵臓圧縮時の損傷防止制御技術</h3>
+                    <p>膵臓切除術における膵液漏を防ぐため、圧縮時の力学挙動と内部圧力を同時計測・解析する安全指標の確立。</p>
+                </div>
+                <div class="card">
+                    <h3>4. ペースメーカ学習シミュレータ</h3>
+                    <p>心臓の動きと心電図、ペースメーカの応答を視覚・触覚で直感的に理解できるペアワーク対応教育教材。</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 25px; text-align: right;">
+                <a href="[suspicious link removed]" target="_blank" class="btn-link">研究内容の詳細記事を見る（KAIT最新研究情報） &rarr;</a>
+            </div>
+        </section>
+
+        <!-- EVENTS Section -->
+        <section id="events">
+            <h2 class="section-title">イベント・地域貢献活動</h2>
+            <div class="card">
+                <h3>KAITサイエンスサマー2026</h3>
+                <p>地域の子どもたちや中高生に科学・ものづくりの魅力を伝える体験型イベントを開催いたしました。当研究室では、臨床工学科の学生・大学院生を中心に「エコーガイド下穿刺シミュレータ」の体験ブースを出展し、体験者から高い評価をいただきました。</p>
+                <a href="[suspicious link removed]" target="_blank" class="btn-link">イベント開催レポートを見る &rarr;</a>
+            </div>
+        </section>
+
+        <!-- FACULTY Section -->
+        <section id="faculty">
+            <h2 class="section-title">教員紹介</h2>
+            <div class="faculty-box">
+                <div class="faculty-info">
+                    <h3>金 大永（Kim Daeyoung）</h3>
+                    <div class="title">神奈川工科大学 健康医療科学部 臨床工学科 教授 / 先端工学研究センター</div>
+                    <p><strong>専門分野・キーワード:</strong> 人体のしくみ、手術用ロボット、生体計測、医療支援システム、触覚・力覚提示</p>
+                    <p style="margin-top: 10px;"><strong>メッセージ:</strong> 医療現場における"経験や感性"だけに頼らない安全な手術操作を、工学とAIの力で科学的にサポートします。就職後も臨床現場の課題を共に研究し続ける理想的な医工連携チームを形作っています。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS Section (進行中の研究課題) -->
+        <section id="projects">
+            <h2 class="section-title">進行中の研究課題</h2>
+            <p style="margin-bottom: 20px;">現在、以下の競争的資金・研究助成による研究プロジェクトが進行しています。</p>
+
+            <div class="project-list">
+                <div class="project-item">
+                    <h4>膵臓圧縮時の内部損傷機序を推定する多モダリティ統合AIモデルの構築</h4>
+                    <div class="project-meta">
+                        <span class="tag">SPReAD事業</span>
+                        <span>情報科学技術・研究情報基盤 AI for Science萌芽的挑戦研究創出事業</span>
+                        <span><strong>研究期間:</strong> 2026年度 (R.8)</span>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <h4>シャントエコーを模擬した能動的制限による穿刺トレーニングシステムの開発と評価</h4>
+                    <div class="project-meta">
+                        <span class="tag">基盤研究(B)</span>
+                        <span>研究助成事業</span>
+                        <span><strong>研究期間:</strong> 2024年度～2027年度 (R.6～R.9)</span>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <h4>COPDと肺気腫の非侵襲的在宅呼吸計測技術に関する研究</h4>
+                    <div class="project-meta">
+                        <span class="tag">基盤研究(C)</span>
+                        <span>研究助成事業</span>
+                        <span><strong>研究期間:</strong> 2024年度～2026年度 (R.6～R.8)</span>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <h4>ペアワークを導入した教育用ペースメーカシミュレータの開発</h4>
+                    <div class="project-meta">
+                        <span class="tag">教育開発</span>
+                        <span>医療・工学教育用シミュレータ研究開発</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 医療支援ロボットシステム研究室 - 神奈川工科大学 健康医療科学部 臨床工学科</p>
+        <p style="margin-top: 5px; font-size: 0.8rem;">〒243-0292 神奈川県厚木市下荻野1030</p>
+    </footer>
+
+</body>
+</html>
